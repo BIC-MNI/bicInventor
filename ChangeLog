@@ -3,6 +3,7 @@
 	* NEWS: 
 	* configure.ac: Changed project name to bicInventor, and
 	version to 0.1.
+	Check for libInventor using AC_TRY_LINK.
 
 	Moved from bicpl++ repository to bicInventor repository.
 	Renamed directory inventor -> lib.

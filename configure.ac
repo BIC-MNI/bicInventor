@@ -24,11 +24,16 @@ smr_REQUIRED_LIB(minc,miicv_create,minc.h)
 smr_REQUIRED_LIB(volume_io,input_volume,volume_io.h)
 smr_REQUIRED_LIB(bicpl,input_graphics_file,bicpl.h)
 
+# I'd like to use smr_REQUIRED_LIB for Inventor, too.  But the library
+# doesn't seem to define any global functions to test for.
+AC_MSG_CHECKING([for -lInventor])
 AC_LANG_PUSH(C++)
-# Function main() used because Inventor does not define any global functions
-# This trick is allowed by GCC, but IRIX CC complains.
-smr_REQUIRED_LIB(Inventor,main,Inventor/SoDB.h)
+LIBS="-lInventor $LIBS"
+AC_TRY_LINK([#include <Inventor/SoDB.h>],
+            [SoDB::init();],,
+            AC_MSG_ERROR(cannot find Inventor library))
 AC_LANG_POP
+AC_MSG_RESULT([yes])
 
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
