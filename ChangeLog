@@ -1,5 +1,9 @@
 2001-07-25  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* NEWS: 
+	* configure.ac: Changed project name to bicInventor, and
+	version to 0.1.
+
 	Moved from bicpl++ repository to bicInventor repository.
 	Renamed directory inventor -> lib.
 
