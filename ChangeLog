@@ -1,3 +1,10 @@
+2001-08-20  Jason Lerch       <jason@bic.mni.mcgill.ca>
+
+	* tools/Makefile.am: removed the -lqt-gl line from the Makefile as
+	it is incompatible with Irix, Mandrake, and Redhat.
+	* lib/bicInventor.cc: changed the texture loading to be sensible
+	for vertical as opposed to horizontal textures.
+
 2001-08-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* configure.ac: Move more of the ugly library-checking code into

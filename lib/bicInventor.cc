@@ -390,7 +390,7 @@ SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename )
     while (! vertexInfo.eof() ) {
 	float vertexValue;
 	vertexInfo >> vertexValue;
-	texCoord->point.set1Value(i, SbVec2f(vertexValue, 0.5));
+	texCoord->point.set1Value(i, SbVec2f(0.5, vertexValue));
 	i++;
     }
     return texCoord;
