@@ -1,5 +1,14 @@
 2001-07-25  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* inventor/Makefile.am:
+	* inventor/bicInventor.cc:
+	* inventor/bicInventor.h: New files.  Code from bicobj2iv.cc moved
+	here to form BIC obv --> inventor conversion library.
+
+	* Makefile.am:
+	* tools/Makefile.am: 
+	* tools/bicobj2iv.cc: Accommodate above changes.
+
 	* m4/smr_OPTIONAL_LIB.m4: Define HAVE_libfoo, if library foo
 	is found.
 

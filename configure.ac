@@ -13,8 +13,8 @@ AC_PROG_CC
 AC_PROG_CXX
 
 dnl Build only static libs by default
-dnl AM_DISABLE_SHARED
-dnl AM_PROG_LIBTOOL
+AC_DISABLE_SHARED
+AC_PROG_LIBTOOL
 
 smr_WITH_BUILD_PATH
 
@@ -30,8 +30,8 @@ smr_OPTIONAL_LIB(Inventor,main,Inventor/SoDB.h)
 AC_LANG_POP
 
 
-AM_CONDITIONAL(HAVE_Inventor,[test $HAVE_libInventor = yes])
+AM_CONDITIONAL(HAVE_libInventor,[test $HAVE_libInventor = yes])
 
 
-AC_CONFIG_FILES([Makefile tools/Makefile])
+AC_CONFIG_FILES([Makefile inventor/Makefile tools/Makefile])
 AC_OUTPUT

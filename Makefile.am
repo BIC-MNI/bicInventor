@@ -1,4 +1,4 @@
-SUBDIRS = tools
+SUBDIRS = inventor tools
 
 AUTOMAKE_OPTIONS = check-news
 
