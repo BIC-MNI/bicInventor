@@ -6,7 +6,7 @@ class SoTextureCoordinate2;
 
 
 //! Convert entire BIC .obj file to scene graph.
-SoSeparator* bic_graphics_file_to_iv( char* filename );
+SoSeparator* bic_graphics_file_to_iv( const char* filename );
 
 //! Read a file containing information about each vertex
 SoTextureCoordinate2* 

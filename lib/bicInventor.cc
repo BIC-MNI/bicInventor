@@ -311,7 +311,7 @@ SoSeparator* bic_text_to_iv( const text_struct& t )
  * \bug The following BIC object types are not currently
  * recognized: MODEL, PIXELS, TEXT, and N_OBJECT_TYPES.
  */
-SoSeparator* bic_graphics_file_to_iv( char* filename ) 
+SoSeparator* bic_graphics_file_to_iv( const char* filename ) 
 {
     SoSeparator* root = new SoSeparator;
 
@@ -319,7 +319,8 @@ SoSeparator* bic_graphics_file_to_iv( char* filename )
     int num_objects;
     object_struct** object_list;
 
-    if ( input_graphics_file( filename, 
+    // FIXME: fix bicpl for constness on these damn strings!!!
+    if ( input_graphics_file( (char*)filename,
 			      &format, &num_objects, &object_list ) != OK ) 
     {
 	return 0;
