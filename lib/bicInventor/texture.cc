@@ -46,7 +46,7 @@ void bic_colourcode( SoSFImage& image,
     set_colour_coding_over_colour( &ccd, get_colour_code(&ccd, 0.999) );
 
     // Generate colours for value 0 to value 1 in vertical direction.
-    unsigned char pixels[3*height*width];
+    unsigned char* pixels = new unsigned char[3*height*width];
     int i = 0;
     for( int y = 0; y < height; ++y ) {
 	Colour col = get_colour_code( &ccd, double(y) / double(height-1) );
@@ -62,6 +62,7 @@ void bic_colourcode( SoSFImage& image,
     }
     delete_colour_coding( &ccd );
     image.setValue( SbVec2s(width,height), 3, pixels );
+    delete[] pixels;
 }
 
 
