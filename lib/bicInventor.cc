@@ -380,9 +380,10 @@ SoSeparator* bic_graphics_file_to_iv( char* filename )
  *        dimension is, in this case, ignored and always set at 0.5
  */
      
-SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename,
-                                                             int column,
-                                                             bool invert)
+SoTextureCoordinate2* 
+bic_vertex_info_to_texture_coordinate( const char* filename,
+				       int column,
+				       bool invert)
 {
     using namespace std;
     SoTextureCoordinate2 *texCoord = new SoTextureCoordinate2;

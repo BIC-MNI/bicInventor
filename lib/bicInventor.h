@@ -9,9 +9,9 @@ class SoTextureCoordinate2;
 SoSeparator* bic_graphics_file_to_iv( char* filename );
 
 //! Read a file containing information about each vertex
-SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename,
-                                                             int column = 0,
-                                                             bool invert=false);
-
+SoTextureCoordinate2* 
+bic_vertex_info_to_texture_coordinate( const char* filename,
+				       int column = 0,
+				       bool invert = false);
 
 #endif

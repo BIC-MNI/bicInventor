@@ -1,5 +1,8 @@
 2001-11-01  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* lib/bicInventor.cc (bic_vertex_info_to_texture_coordinate): 
+	Add const qualifier on filename argument.
+
 	* lib/inventorMincVolume.cc: 
 	* lib/inventorMincVolume.h: Renamed to ...
 
