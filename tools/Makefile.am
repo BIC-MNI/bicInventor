@@ -1,7 +1,7 @@
 bin_PROGRAMS = bicobj2iv mesh2iv meshmorph
 
 INCLUDES = -I$(top_srcdir)/lib
-LDADD = ../lib/libbicInventor.la -lInventor
+LDADD = ../lib/libbicInventor.la
 
 ParseArgv_src = ParseArgv.c ParseArgv.h
 

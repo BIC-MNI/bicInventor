@@ -36,15 +36,35 @@ AC_TRY_LINK([#include <mniVolume.h>],
             AC_MSG_ERROR([cannot find oobicpl library]))
 AC_MSG_RESULT([yes])
 
-AC_MSG_CHECKING([for -lInventor])
-LIBS="-lInventor $LIBS"
+
+# Determine the OpenInventor library installed.
+#
+save_LIBS=$LIBS
+LIBS="-lCoin $LIBS"
+
+AC_MSG_CHECKING([for Coin])
 AC_TRY_LINK([#include <Inventor/SoDB.h>],
-            [SoDB::init();],,
-            AC_MSG_ERROR([cannot find Inventor library]))
-AC_MSG_RESULT([yes])
+            [SoDB::init();],
+	    [result=yes],
+	    [result=no])
+AC_MSG_RESULT($result)
+
+if test "$result" = no; then
+    LIBS="-lInventor $save_LIBS"
+    AC_MSG_CHECKING([for Inventor])
+    AC_TRY_LINK([#include <Inventor/SoDB.h>],
+                [SoDB::init();],
+	   	[result=yes],
+		[result=no])
+    AC_MSG_RESULT($result)
+fi
+
+if test "$result" = no; then
+    AC_MSG_ERROR([No OpenInventor library detected.])
+fi
+
 
 AC_LANG_POP
-
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
 AC_OUTPUT

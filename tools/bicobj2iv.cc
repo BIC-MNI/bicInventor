@@ -2,6 +2,7 @@
  * Translate BIC obj file to inventor format.
  **/
 
+#include <cstring>
 #include <iostream.h>
 
 #include <Inventor/SoDB.h>

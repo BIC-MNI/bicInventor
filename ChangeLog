@@ -1,3 +1,12 @@
+2001-08-20  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.ac: Detect either Coin or SGI's OpenInventor library.
+	* tools/Makefile.am (LDADD): Do not specify -lInventor directly;
+	use the computed LIBS.
+
+	* tools/bicobj2iv.cc: Include <cstring> to get definition of
+	strrchr().
+
 2001-08-13  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* tools/meshmorph.cc:
