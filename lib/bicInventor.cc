@@ -4,12 +4,16 @@
 
 #include <iostream.h>
 #include <fstream.h>
+#include <string>
 
 #include <Inventor/SoDB.h>
 #include <Inventor/SoPath.h>
 
 #include <Inventor/actions/SoSearchAction.h>
 #include <Inventor/actions/SoWriteAction.h>
+
+// node kit nodes
+#include <Inventor/nodekits/SoShapeKit.h>
 
 // shape nodes
 #include <Inventor/nodes/SoCube.h>
@@ -366,10 +370,14 @@ SoSeparator* bic_graphics_file_to_iv( char* filename )
 }
 
 
-/*! Reads a text file which contains information in the form of a floating
- *  point value about each vertex. These types of files are produced by,
- *  for example, volume_object_evaluate and thickness or curvature 
- *  measurements;
+/*! Reads a text file which contains information in the form of a
+ *  floating point value about each vertex. These types of files are
+ *  produced by, for example, volume_object_evaluate and thickness or
+ *  curvature measurements. Moreover, it can also accept multi-column
+ *  files, column's separated by spaces. The column that is returned
+ *  is specified by the column variable. And it can invert the array
+ *  as well (multiply by -1).
+ *
  *  \return A texture coordinate node which contains the floating point value
  *          associated with each vertex.
  *  \note Assumes that the vertex information is implicitly presented in the
@@ -378,21 +386,48 @@ SoSeparator* bic_graphics_file_to_iv( char* filename )
  *        dimension is, in this case, ignored and always set at 0.5
  */
      
-SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename )
+SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename,
+                                                             int column,
+                                                             bool invert)
 {
+    using namespace std;
     SoTextureCoordinate2 *texCoord = new SoTextureCoordinate2;
-
+    int startF, endF;
+    string line;
     // open the file with the texture info
     ifstream vertexInfo(filename);
   
+    
     // read each vertex;
     int i = 0;
     while (! vertexInfo.eof() ) {
-	float vertexValue;
-	vertexInfo >> vertexValue;
-	texCoord->point.set1Value(i, SbVec2f(0.5, vertexValue));
-	i++;
+      float vertexValue;
+      getline(vertexInfo,line);
+      
+      // split the string to get just the column that is wanted
+      endF = 0;
+      for (int j = 0; j <= column; j++) {
+        if (endF != -1) {
+          startF = endF;
+          endF = line.find_first_of(" ", startF+1);
+          if (endF == 0) {
+            endF = line.length();
+          }
+        }
+      }
+      string tmpstring = line.substr(startF,endF);
+      vertexValue = atof(tmpstring.c_str());
+      if (invert == true) {
+        vertexValue *= -1;
+      }
+
+      texCoord->point.set1Value(i, SbVec2f(0.5, vertexValue));
+      i++;
     }
     return texCoord;
 }
 
+    
+    
+
+    
