@@ -1,6 +1,10 @@
 
 This package contains MNI interfaces and extensions to Open Inventor.
 
+Most of the code consists of MNI-to-OpenInventor conversion utilities.
+See the header files lib/bicInventor.h lib/bicInventor/*.h for public
+API.
+
 
 You must have bicpl and its attendant libraries installed before building
 bicInventor.

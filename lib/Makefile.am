@@ -4,8 +4,11 @@ includebivdir = $(includedir)/bicInventor
 
 include_HEADERS = bicInventor.h
 includebiv_HEADERS = \
-	bicInventor/ObjectConverters.h \
+	bicInventor/object.h \
 	bicInventor/MincVolume.h
 
-libbicInventor_la_SOURCES = bicInventor.cc bicInventor/MincVolume.cc
+libbicInventor_la_SOURCES = \
+	bicInventor/texture.cc \
+	bicInventor/object.cc \
+	bicInventor/MincVolume.cc
 

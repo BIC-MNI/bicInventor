@@ -1,3 +1,13 @@
+2001-11-07  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* lib/bicInventor.cc:
+	* lib/bicInventor/ObjectConverters.h: Removed.  Contents 
+	moved to ...
+
+	* lib/bicInventor/object.h:
+	* lib/bicInventor/object.cc:
+	* lib/bicInventor/texture.cc: ... here.
+
 2001-11-05  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
 
 	* lib/bicInventor.h: 
