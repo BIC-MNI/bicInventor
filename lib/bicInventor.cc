@@ -63,7 +63,8 @@ add_color_nodes( SoGroup* root,
 	mat_binding->value = SoMaterialBinding::PER_VERTEX_INDEXED;
 	break;
     default:
-	cerr << "Unable to handle BIC colour flag: " << bic_colour << endl;
+	std::cerr << "Unable to handle BIC colour flag: " 
+		  << bic_colour << std::endl;
     }
 
     root->addChild(mat_binding);
@@ -153,7 +154,7 @@ SoSeparator* bic_marker_to_iv( const marker_struct& m )
     }
 
     default:
-	cerr << "Cannot handle marker type " << m.type << endl;
+	std::cerr << "Cannot handle marker type " << m.type << std::endl;
     }
 
     return root;
@@ -162,14 +163,14 @@ SoSeparator* bic_marker_to_iv( const marker_struct& m )
 
 SoSeparator* bic_model_to_iv( const model_struct& m )
 {
-    cerr << "Skipping model object." << endl;
+    std::cerr << "Skipping model object." << std::endl;
     return NULL;
 }
 
 
 SoSeparator* bic_pixels_to_iv( const pixels_struct& p )
 {
-    cerr << "Skipping pixels object." << endl;
+    std::cerr << "Skipping pixels object." << std::endl;
     return NULL;
 }
 
@@ -298,7 +299,7 @@ SoSeparator* bic_quadmesh_to_iv( const quadmesh_struct& q )
 
 SoSeparator* bic_text_to_iv( const text_struct& t )
 {
-    cerr << "Skipping text object." << endl;
+    std::cerr << "Skipping text object." << std::endl;
     return NULL;
 }
 
@@ -351,8 +352,8 @@ SoSeparator* bic_graphics_file_to_iv( char* filename )
 	    break;
 //      case N_OBJECT_TYPES: dump_nobj( (object_list[i])->specific.??? ); break;
 	default: 
-	    cerr << "BIC object type " << object_list[i]->object_type 
-		 << " not handled." << endl;
+	    std::cerr << "BIC object type " << object_list[i]->object_type 
+		      << " not handled." << std::endl;
 	}
 
 	if ( obj ) {
