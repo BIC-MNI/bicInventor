@@ -1,3 +1,8 @@
+2001-08-10  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.ac: Use legal C++ code to detect oobicpl; IRIX CC
+	complained.
+
 2001-08-10  Jason Lerch       <jason@bic.mni.mcgill.ca>
 
 	* bicInventor.{cc,h}: added a function to read vertex information

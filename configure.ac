@@ -32,7 +32,7 @@ AC_LANG_PUSH(C++)
 AC_MSG_CHECKING([for -loobicpl])
 LIBS="-loobicpl $LIBS"
 AC_TRY_LINK([#include <mniVolume.h>],
-            [mniVolume::mniVolume();],,
+            [mniVolume vol;],,
             AC_MSG_ERROR(cannot find oobicpl library))
 AC_MSG_RESULT([yes])
 
