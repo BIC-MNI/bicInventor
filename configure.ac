@@ -18,53 +18,13 @@ AC_PROG_LIBTOOL
 
 smr_WITH_BUILD_PATH
 
-smr_REQUIRED_LIB(m,sqrt,math.h)
-smr_REQUIRED_LIB(netcdf,ncopen,netcdf.h)
-smr_REQUIRED_LIB(minc,miicv_create,minc.h)
-smr_REQUIRED_LIB(volume_io,input_volume,volume_io.h)
-smr_REQUIRED_LIB(bicpl,input_graphics_file,bicpl.h)
+# Check for required C libraries
+mni_REQUIRE_BICPL
 
-# I'd like to use smr_REQUIRED_LIB for Inventor, too.  But the library
-# doesn't seem to define any global functions to test for.
-
+# Check for rquired C++ libraries
 AC_LANG_PUSH(C++)
-
-AC_MSG_CHECKING([for -loobicpl])
-LIBS="-loobicpl $LIBS"
-AC_TRY_LINK([#include <mniVolume.h>],
-            [mniVolume vol;],,
-            AC_MSG_ERROR([cannot find oobicpl library]))
-AC_MSG_RESULT([yes])
-
-
-# Determine the OpenInventor library installed.
-#
-save_LIBS=$LIBS
-LIBS="-lCoin $LIBS"
-
-AC_MSG_CHECKING([for Coin])
-AC_TRY_LINK([#include <Inventor/SoDB.h>],
-            [SoDB::init();],
-	    [result=yes],
-	    [result=no])
-AC_MSG_RESULT($result)
-
-if test "$result" = no; then
-    LIBS="-lInventor $save_LIBS"
-    AC_MSG_CHECKING([for Inventor])
-    AC_TRY_LINK([#include <Inventor/SoDB.h>],
-                [SoDB::init();],
-	   	[result=yes],
-		[result=no])
-    AC_MSG_RESULT($result)
-fi
-
-if test "$result" = no; then
-    AC_MSG_ERROR([No OpenInventor library detected.])
-fi
-
-
-AC_LANG_POP
+mni_REQUIRE_LIB(oobicpl,[#include <mniVolume.h>],[mniVolume vol;])
+mni_REQUIRE_OPENINVENTOR
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
 AC_OUTPUT
