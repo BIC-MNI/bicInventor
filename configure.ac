@@ -18,13 +18,11 @@ AC_PROG_LIBTOOL
 
 smr_WITH_BUILD_PATH
 
-# Check for required C libraries
-mni_REQUIRE_BICPL
+# Check for required libraries
 
-# Check for rquired C++ libraries
-AC_LANG_PUSH(C++)
-mni_REQUIRE_LIB(oobicpl,[#include <mniVolume.h>],[mniVolume vol;])
-mni_REQUIRE_SOQT
+mni_REQUIRE_BICPL
+mni_REQUIRE_OOBICPL
+mni_REQUIRE_OPENINVENTOR
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
 AC_OUTPUT

@@ -1,6 +1,13 @@
 2001-10-23  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* Makefile.am (m4_files): Distribute all m4/*m4 files; automake
+	generates a rule that depends on all of them.  What a nuisance.
+	(ACLOCAL_AMFLAGS): Specify -I m4 when running aclocal.
+
 	* tools/Makefile.am: Do not build extraneous tools.
+
+	* configure.ac: Probe only for OpenInventor, do not probe for
+	SoQt (was only needed because of tools/meshmorph).
 
 2001-10-18  Jason Lerch       <jason@bic.mni.mcgill.ca>
 
