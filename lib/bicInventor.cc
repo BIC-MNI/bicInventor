@@ -317,7 +317,6 @@ SoNode* bic_graphics_file_to_iv( char* filename )
     {
 	return 0;
     }
-    cerr << " done." << endl;
 
     for ( int i = 0; i < num_objects; ++i ) {
 	SoNode* obj = NULL;
