@@ -1,3 +1,7 @@
+2001-10-23  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* tools/Makefile.am: Do not build extraneous tools.
+
 2001-10-18  Jason Lerch       <jason@bic.mni.mcgill.ca>
 
 	* configure.ac: using new REQUIRE_SOQT check
@@ -8,7 +12,7 @@
 
 2001-10-04  Jason Lerch       <jason@bic.mni.mcgill.ca>
 
-	*lib/bicInventor.cc: added multi-column texture file support
+	* lib/bicInventor.cc: added multi-column texture file support
 
 2001-08-20  Jason Lerch       <jason@bic.mni.mcgill.ca>
 
