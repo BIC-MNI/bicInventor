@@ -1,5 +1,18 @@
 2001-11-01  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	* lib/inventorMincVolume.cc: 
+	* lib/inventorMincVolume.h: Renamed to ...
+
+	* lib/bicInventor/MincVolume.cc: 
+	* lib/bicInventor/MincVolume.h: ... here.
+
+	* lib/bicInventor/ObjectConverters.h: New.  Moved the
+	declarations for specific BIC object conversion here,
+	from bicInventor.h.  Keeps the latter clean of including
+	<bicpl.h>.
+
+	* lib/Makefile.am: Install sub-headers into include/bicInventor.
+
 	* configure.ac: Check for <cstring>.
 
 	* lib/bicInventor.cc: Use <iostream> and <fstream> rather

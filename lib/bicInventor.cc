@@ -2,6 +2,9 @@
  * Translate BIC obj file to inventor format.
  **/
 
+#include "bicInventor/ObjectConverters.h"
+#include "bicInventor.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -34,16 +37,6 @@
 
 // group nodes
 #include <Inventor/nodes/SoSeparator.h>
-
-extern "C" {
-#  include <bicpl.h>
-}
-
-// GCC will complain if you declare "struct foo", then "typedef struct
-// { ... } foo".  However, it is happy if the order of declarations is
-// reversed.
-#include "bicInventor.h"
-
 
 
 

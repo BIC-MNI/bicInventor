@@ -1,5 +1,5 @@
-#ifndef __INVENTORMINCVOLUME__
-#define __INVENTORMINCVOLUME__
+#ifndef BICINVENTOR_MINCVOLUME_H   // -*- C++ -*-
+#define BICINVENTOR_MINCVOLUME_H
 
 #include <Inventor/nodes/SoTexture2.h>
 
@@ -36,5 +36,5 @@ public:
 
 };
 
-#endif // __INVENTORMINCVOLUME__
+#endif
 

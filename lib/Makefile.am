@@ -1,5 +1,11 @@
 lib_LTLIBRARIES = libbicInventor.la
-include_HEADERS = bicInventor.h inventorMincVolume.h
 
-libbicInventor_la_SOURCES = bicInventor.cc inventorMincVolume.cc
+includebivdir = $(includedir)/bicInventor
+
+include_HEADERS = bicInventor.h
+includebiv_HEADERS = \
+	bicInventor/ObjectConverters.h \
+	bicInventor/MincVolume.h
+
+libbicInventor_la_SOURCES = bicInventor.cc bicInventor/MincVolume.cc
 

@@ -1,4 +1,4 @@
-#include "inventorMincVolume.h"
+#include "bicInventor/MincVolume.h"
 
 inventorMincVolume::inventorMincVolume(char *filename)
   : mniVolume(filename, 0, 255, 3, XYZdimOrder, NC_BYTE, FALSE, TRUE, NULL) {
