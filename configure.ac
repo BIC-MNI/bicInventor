@@ -26,14 +26,24 @@ smr_REQUIRED_LIB(bicpl,input_graphics_file,bicpl.h)
 
 # I'd like to use smr_REQUIRED_LIB for Inventor, too.  But the library
 # doesn't seem to define any global functions to test for.
-AC_MSG_CHECKING([for -lInventor])
+
 AC_LANG_PUSH(C++)
+
+AC_MSG_CHECKING([for -loobicpl])
+LIBS="-loobicpl $LIBS"
+AC_TRY_LINK([#include <mniVolume.h>],
+            [mniVolume::mniVolume();]
+            AC_MSG_ERROR(cannot find oobicpl library))
+AC_MSG_RESULT([yes])
+
+AC_MSG_CHECKING([for -lInventor])
 LIBS="-lInventor $LIBS"
 AC_TRY_LINK([#include <Inventor/SoDB.h>],
             [SoDB::init();],,
             AC_MSG_ERROR(cannot find Inventor library))
-AC_LANG_POP
 AC_MSG_RESULT([yes])
+
+AC_LANG_POP
 
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])

@@ -1,3 +1,10 @@
+2001-07-30  Jason Lerch       <jason@bic.mni.mcgill.ca>
+	* inventorMincVolume.h:
+	* inventorMincVolume.cc: a subclass of mniVolume designed to deal
+	with volumetric information through texture mapping. This class is
+	still incomplete as for now it only deals with transverse slices.
+	* configure.ac: added a check for the oobicpl library.
+	
 2001-07-25  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* NEWS: 
@@ -27,3 +34,5 @@
 	* Makefile.am (EXTRA_DIST): Distribute the local autoconf macros.
 
 
+
+	

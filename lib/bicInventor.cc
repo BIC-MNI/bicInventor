@@ -29,7 +29,6 @@
 // group nodes
 #include <Inventor/nodes/SoSeparator.h>
 
-
 extern "C" {
 #  include <bicpl.h>
 }
@@ -179,6 +178,8 @@ SoNode* bic_polygons_to_iv( const polygons_struct& p )
     SoNormalBinding* normal_binding = new SoNormalBinding;
     SoNormal* normal = new SoNormal;
 
+    normal->setName("Normal");
+
     if ( p.normals ) {
 	normal_binding->value = SoNormalBinding::PER_VERTEX_INDEXED;
 	normal->vector.setNum( p.n_points );
@@ -188,6 +189,7 @@ SoNode* bic_polygons_to_iv( const polygons_struct& p )
 
 
     SoCoordinate3* coord = new SoCoordinate3;
+    coord->setName("Vertices");
     coord->point.setNum( p.n_points );
 
     for( int v = 0; v < p.n_points; ++v ) {
@@ -206,6 +208,7 @@ SoNode* bic_polygons_to_iv( const polygons_struct& p )
     root->addChild(coord);
 
     SoIndexedFaceSet* face_set = new SoIndexedFaceSet;
+    face_set->setName("Polygons");
 
     int fs_index = 0;
     for( int f = 0; f < p.n_items; ++f ) {
