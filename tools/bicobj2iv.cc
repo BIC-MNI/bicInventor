@@ -40,8 +40,8 @@ void usage( char* argv0 )
     char* s = strrchr( argv0, '/' );
     if ( s ) argv0 = s+1;
 
-    cerr << "usage: " << argv0 << " [options] file" << endl;
-    cerr << "\tconvert BIC obj file to inventor format." << endl;
+    std::cerr << "usage: " << argv0 << " [options] file" << std::endl;
+    std::cerr << "\tconvert BIC obj file to inventor format." << std::endl;
 }
 
 
@@ -63,7 +63,7 @@ int main( int ac, char** av )
     if ( output_filename ) {
 	SoOutput* out = wa.getOutput();
 	if ( out->openFile(output_filename) == 0 ) {
-	    cerr << "cannot open file: " << output_filename << endl;
+	    std::cerr << "cannot open file: " << output_filename << std::endl;
 	    return 1;
 	}
     }
