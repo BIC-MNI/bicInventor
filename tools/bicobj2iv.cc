@@ -2,8 +2,12 @@
  * Translate BIC obj file to inventor format.
  **/
 
-#include <cstring>
-#include <iostream.h>
+#include <config.h>
+
+#if HAVE_CSTRING
+#   include <cstring>
+#endif
+#include <iostream>
 
 #include <Inventor/SoDB.h>
 

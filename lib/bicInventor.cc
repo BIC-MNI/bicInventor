@@ -2,8 +2,8 @@
  * Translate BIC obj file to inventor format.
  **/
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <string>
 
 #include <Inventor/SoDB.h>
@@ -11,6 +11,9 @@
 
 #include <Inventor/actions/SoSearchAction.h>
 #include <Inventor/actions/SoWriteAction.h>
+
+// node kit nodes
+#include <Inventor/nodekits/SoShapeKit.h>
 
 // shape nodes
 #include <Inventor/nodes/SoCube.h>
@@ -387,6 +390,7 @@ SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename,
                                                              int column,
                                                              bool invert)
 {
+    using namespace std;
     SoTextureCoordinate2 *texCoord = new SoTextureCoordinate2;
     int startF, endF;
     string line;

@@ -1,3 +1,14 @@
+2001-11-01  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.ac: Check for <cstring>.
+
+	* lib/bicInventor.cc: Use <iostream> and <fstream> rather
+	than the old ".h" names.  Needed for SGI CC.
+
+	* tools/bicobj2iv.cc: Use <iostream> rather than <iostream.h>.  
+	Include <cstring>, if available; needed for strrchr() declaration
+	on Linux.
+
 2001-10-23  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* Makefile.am (m4_files): Distribute all m4/*m4 files; automake

@@ -24,5 +24,13 @@ mni_REQUIRE_BICPL
 mni_REQUIRE_OOBICPL
 mni_REQUIRE_OPENINVENTOR
 
+
+# Check for optional header files
+
+AC_LANG_PUSH(C++)
+AC_CHECK_HEADERS(cstring)
+AC_LANG_POP
+
+
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
 AC_OUTPUT
