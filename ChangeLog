@@ -1,3 +1,11 @@
+2001-11-05  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* lib/bicInventor.h: 
+	* lib/bicInventor.cc (bic_graphics_file_to_iv): Add const
+	qualifier to filename argument.
+
+	* tools/bicobj2iv.cc: Qualify cerr, etc, with std::.
+
 2001-11-01  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* lib/bicInventor.cc (bic_vertex_info_to_texture_coordinate): 
