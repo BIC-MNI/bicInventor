@@ -26,12 +26,10 @@ smr_REQUIRED_LIB(bicpl,input_graphics_file,bicpl.h)
 
 AC_LANG_PUSH(C++)
 # Function main() used because Inventor does not define any global functions
-smr_OPTIONAL_LIB(Inventor,main,Inventor/SoDB.h)
+# This trick is allowed by GCC, but IRIX CC complains.
+smr_REQUIRED_LIB(Inventor,main,Inventor/SoDB.h)
 AC_LANG_POP
 
 
-AM_CONDITIONAL(HAVE_libInventor,[test $HAVE_libInventor = yes])
-
-
-AC_CONFIG_FILES([Makefile inventor/Makefile tools/Makefile])
+AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
 AC_OUTPUT

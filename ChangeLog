@@ -1,5 +1,8 @@
 2001-07-25  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
+	Moved from bicpl++ repository to bicInventor repository.
+	Renamed directory inventor -> lib.
+
 	* inventor/Makefile.am:
 	* inventor/bicInventor.cc:
 	* inventor/bicInventor.h: New files.  Code from bicobj2iv.cc moved
