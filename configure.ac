@@ -24,7 +24,7 @@ mni_REQUIRE_BICPL
 # Check for rquired C++ libraries
 AC_LANG_PUSH(C++)
 mni_REQUIRE_LIB(oobicpl,[#include <mniVolume.h>],[mniVolume vol;])
-mni_REQUIRE_OPENINVENTOR
+mni_REQUIRE_SOQT
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
 AC_OUTPUT

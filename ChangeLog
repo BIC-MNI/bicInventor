@@ -1,3 +1,11 @@
+2001-10-18  Jason Lerch       <jason@bic.mni.mcgill.ca>
+
+	* configure.ac: using new REQUIRE_SOQT check
+
+2001-10-05  Jason Lerch       <jason@bic.mni.mcgill.ca>
+
+	* lib/bicInventor.cc: using namespace std
+
 2001-10-04  Jason Lerch       <jason@bic.mni.mcgill.ca>
 
 	*lib/bicInventor.cc: added multi-column texture file support
