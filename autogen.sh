@@ -1,7 +1,9 @@
 #! /bin/sh
 
-aclocal -I m4                  && \
-    autoheader                 && \
-    automake --add-missing     && \
-    autoconf
+set -e
+
+aclocal -I m4
+autoheader
+automake --add-missing
+autoconf
 

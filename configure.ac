@@ -30,7 +30,7 @@ smr_OPTIONAL_LIB(Inventor,main,Inventor/SoDB.h)
 AC_LANG_POP
 
 
-AM_CONDITIONAL(HAVE_Inventor,[test $HAVE_Inventor = yes])
+AM_CONDITIONAL(HAVE_Inventor,[test $HAVE_libInventor = yes])
 
 
 AC_CONFIG_FILES([Makefile tools/Makefile])

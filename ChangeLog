@@ -1,0 +1,12 @@
+2001-07-25  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* m4/smr_OPTIONAL_LIB.m4: Define HAVE_libfoo, if library foo
+	is found.
+
+	* configure.ac: Accomodate above change.
+
+2001-07-24  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Makefile.am (EXTRA_DIST): Distribute the local autoconf macros.
+
+
