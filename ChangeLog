@@ -1,3 +1,8 @@
+2001-08-10  Jason Lerch       <jason@bic.mni.mcgill.ca>
+
+	* bicInventor.{cc,h}: added a function to read vertex information
+	files and return them as texture coordinates.
+
 2001-07-31  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* configure.ac: Insert omitted commas in check for oobicpl.

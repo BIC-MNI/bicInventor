@@ -3,6 +3,7 @@
  **/
 
 #include <iostream.h>
+#include <fstream.h>
 
 #include <Inventor/SoDB.h>
 #include <Inventor/SoPath.h>
@@ -24,6 +25,7 @@
 #include <Inventor/nodes/SoMaterialBinding.h>
 #include <Inventor/nodes/SoNormal.h>
 #include <Inventor/nodes/SoNormalBinding.h>
+#include <Inventor/nodes/SoTextureCoordinate2.h>
 #include <Inventor/nodes/SoTransform.h>
 
 // group nodes
@@ -359,4 +361,32 @@ SoNode* bic_graphics_file_to_iv( char* filename )
     return root;
 }
 
+/*! Reads a text file which contains information in the form of a floating
+ *  point value about each vertex. These types of files are produced by,
+ *  for example, volume_object_evaluate and thickness or curvature 
+ *  measurements;
+ *  \return A texture coordinate node which contains the floating point value
+ *          associated with each vertex.
+ *  \note Assumes that the vertex information is implicitly presented in the
+ *        same order as the vertices
+ *  \note A texture index generally works in two dimensions. The second
+ *        dimension is, in this case, ignored and always set at 0.5
+ */
+     
+SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename) {
+  SoTextureCoordinate2 *texCoord = new SoTextureCoordinate2;
+
+  // open the file with the texture info
+  ifstream vertexInfo(filename);
+  
+  // read each vertex;
+  int i = 0;
+  while (! vertexInfo.eof() ) {
+    float vertexValue;
+    vertexInfo >> vertexValue;
+    texCoord->point.set1Value(i, SbVec2f(vertexValue, 0.5));
+    i++;
+  }
+  return texCoord;
+}
 

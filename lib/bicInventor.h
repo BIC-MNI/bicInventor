@@ -2,6 +2,7 @@
 #define BICINVENTOR_H
 
 class SoNode;
+class SoTextureCoordinate2;
 
 #if 0
 /** SGI's CC has a problem with redeclaring structs,
@@ -20,6 +21,8 @@ SoNode* bic_quadmesh_to_iv( const quadmesh_struct& q );
 //! Convert entire BIC .obj file to scene graph.
 SoNode* bic_graphics_file_to_iv( char* filename );
 
+//! Read a file containing information about each vertex
+SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename);
 
 
 #endif
