@@ -5,7 +5,6 @@
 #include <iostream.h>
 
 #include <Inventor/SoDB.h>
-//#include <Inventor/SoPath.h>
 
 #include <Inventor/actions/SoSearchAction.h>
 #include <Inventor/actions/SoWriteAction.h>
@@ -36,7 +35,7 @@ void usage( char* argv0 )
     char* s = strrchr( argv0, '/' );
     if ( s ) argv0 = s+1;
 
-    cerr << "usage: " << argv0 << " [options] file ..." << endl;
+    cerr << "usage: " << argv0 << " [options] file" << endl;
     cerr << "\tconvert BIC obj file to inventor format." << endl;
 }
 

@@ -1,11 +1,11 @@
 
-This is set of C++ interfaces for bicpl functionality but it is NOT a
-full C++ API for bicpl.  Rather, bicpl++ contains "glue" code to interface
-bicpl with C++ libraries, such as CGAL and Inventor.
+This package contains MNI interfaces and extensions to Open Inventor.
+
 
 You must have bicpl and its attendant libraries installed before building
-bicpl++.
+bicInventor.
 
-See INSTALL and INSTALL.bicpl++ for installation instructions.
+See INSTALL for installation instructions.
 
-Send BUG reports to stever@bic.mni.mcgill.ca.
+Send BUG reports to {stever,jason}@bic.mni.mcgill.ca.
+

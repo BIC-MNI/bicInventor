@@ -2,3 +2,5 @@
 .libs
 Makefile Makefile.in
 bicobj2iv
+meshmorph
+mesh2iv

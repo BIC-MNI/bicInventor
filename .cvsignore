@@ -5,3 +5,4 @@ config.log config.status
 configure
 libtool
 stamp-h stamp-h.in
+stamp-h1

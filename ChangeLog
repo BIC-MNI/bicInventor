@@ -1,3 +1,13 @@
+2001-08-13  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* tools/meshmorph.cc:
+	* tools/mesh2iv.cc: New.
+
+	* lib/bicInventor.h: 
+	* lib/bicInventor.cc (bic_lines_to_iv, bic_marker_to_iv,
+	bic_polygons_to_iv, bic_quadmesh_to_iv, bic_graphics_file_to_iv):
+	Change return type to SoSeparator*.
+
 2001-08-10  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
 
 	* configure.ac: Use legal C++ code to detect oobicpl; IRIX CC

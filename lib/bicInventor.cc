@@ -35,12 +35,17 @@ extern "C" {
 #  include <bicpl.h>
 }
 
+// GCC will complain if you declare "struct foo", then "typedef struct
+// { ... } foo".  However, it is happy if the order of declarations is
+// reversed.
 #include "bicInventor.h"
+
 
 
 
 /*! \brief Add material binding and base colour nodes to the group.
  *
+ * \return the base colour node
  */
 static SoBaseColor* 
 add_color_nodes( SoGroup* root, 
@@ -77,7 +82,7 @@ add_color_nodes( SoGroup* root,
 
 
 
-SoNode* bic_lines_to_iv( const lines_struct& l )
+SoSeparator* bic_lines_to_iv( const lines_struct& l )
 {
     SoSeparator* root = new SoSeparator;
     SoBaseColor* color = add_color_nodes( root, l.colour_flag, l.colours[0] );
@@ -119,7 +124,7 @@ SoNode* bic_lines_to_iv( const lines_struct& l )
 
 
 // We ignore label, structure_id, and patient_id fields.
-SoNode* bic_marker_to_iv( const marker_struct& m ) 
+SoSeparator* bic_marker_to_iv( const marker_struct& m ) 
 {
     SoSeparator* root = new SoSeparator;
     add_color_nodes( root, ONE_COLOUR, m.colour );
@@ -158,21 +163,21 @@ SoNode* bic_marker_to_iv( const marker_struct& m )
 }  
 
 
-SoNode* bic_model_to_iv( const model_struct& m )
+SoSeparator* bic_model_to_iv( const model_struct& m )
 {
     cerr << "Skipping model object." << endl;
     return NULL;
 }
 
 
-SoNode* bic_pixels_to_iv( const pixels_struct& p )
+SoSeparator* bic_pixels_to_iv( const pixels_struct& p )
 {
     cerr << "Skipping pixels object." << endl;
     return NULL;
 }
 
 
-SoNode* bic_polygons_to_iv( const polygons_struct& p )
+SoSeparator* bic_polygons_to_iv( const polygons_struct& p )
 {
     SoSeparator* root = new SoSeparator;
     SoBaseColor* color = add_color_nodes( root, p.colour_flag, p.colours[0] );
@@ -180,7 +185,7 @@ SoNode* bic_polygons_to_iv( const polygons_struct& p )
     SoNormalBinding* normal_binding = new SoNormalBinding;
     SoNormal* normal = new SoNormal;
 
-    normal->setName("Normal");
+    normal->setName("Normals");
 
     if ( p.normals ) {
 	normal_binding->value = SoNormalBinding::PER_VERTEX_INDEXED;
@@ -223,14 +228,13 @@ SoNode* bic_polygons_to_iv( const polygons_struct& p )
 	face_set->coordIndex.set1Value( fs_index++, -1 );
     }
 
-
     root->addChild(face_set);
     return root;
 }
 
 
 
-SoNode* bic_quadmesh_to_iv( const quadmesh_struct& q )
+SoSeparator* bic_quadmesh_to_iv( const quadmesh_struct& q )
 {
     SoSeparator* root = new SoSeparator;
 
@@ -295,7 +299,7 @@ SoNode* bic_quadmesh_to_iv( const quadmesh_struct& q )
 }
 
 
-SoNode* bic_text_to_iv( const text_struct& t )
+SoSeparator* bic_text_to_iv( const text_struct& t )
 {
     cerr << "Skipping text object." << endl;
     return NULL;
@@ -309,7 +313,7 @@ SoNode* bic_text_to_iv( const text_struct& t )
  * \bug The following BIC object types are not currently
  * recognized: MODEL, PIXELS, TEXT, and N_OBJECT_TYPES.
  */
-SoNode* bic_graphics_file_to_iv( char* filename ) 
+SoSeparator* bic_graphics_file_to_iv( char* filename ) 
 {
     SoSeparator* root = new SoSeparator;
 
@@ -361,6 +365,7 @@ SoNode* bic_graphics_file_to_iv( char* filename )
     return root;
 }
 
+
 /*! Reads a text file which contains information in the form of a floating
  *  point value about each vertex. These types of files are produced by,
  *  for example, volume_object_evaluate and thickness or curvature 
@@ -373,20 +378,21 @@ SoNode* bic_graphics_file_to_iv( char* filename )
  *        dimension is, in this case, ignored and always set at 0.5
  */
      
-SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename) {
-  SoTextureCoordinate2 *texCoord = new SoTextureCoordinate2;
+SoTextureCoordinate2* bic_vertex_info_to_texture_coordinate( char* filename )
+{
+    SoTextureCoordinate2 *texCoord = new SoTextureCoordinate2;
 
-  // open the file with the texture info
-  ifstream vertexInfo(filename);
+    // open the file with the texture info
+    ifstream vertexInfo(filename);
   
-  // read each vertex;
-  int i = 0;
-  while (! vertexInfo.eof() ) {
-    float vertexValue;
-    vertexInfo >> vertexValue;
-    texCoord->point.set1Value(i, SbVec2f(vertexValue, 0.5));
-    i++;
-  }
-  return texCoord;
+    // read each vertex;
+    int i = 0;
+    while (! vertexInfo.eof() ) {
+	float vertexValue;
+	vertexInfo >> vertexValue;
+	texCoord->point.set1Value(i, SbVec2f(vertexValue, 0.5));
+	i++;
+    }
+    return texCoord;
 }
 
