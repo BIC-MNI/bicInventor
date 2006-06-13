@@ -2,6 +2,7 @@
 #define BICINVENTOR_H
 
 extern "C" {
+#   include <bicpl.h>
 #   include <bicpl/colour_coding.h>
 #   undef ON
 #   undef OFF
