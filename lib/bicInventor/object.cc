@@ -33,6 +33,7 @@
 #include <Inventor/nodes/SoSeparator.h>
 
 
+#define  CHUNK_SIZE   1000000
 
 /*! \brief Add material binding and base colour nodes to the group.
  *
@@ -167,6 +168,122 @@ SoSeparator* bic_pixels_to_iv( const pixels_struct& p )
     std::cerr << "Skipping pixels object." << std::endl;
     return NULL;
 }
+
+object_struct* iv_to_bic_polygons( SoSeparator *iv_geometry )
+{
+    object_struct *object = create_object( POLYGONS );
+    polygons_struct *polygons = get_polygons_ptr( object );
+    
+    // use default surface properties - should eventually translate them
+    // from the inventor file.
+    Surfprop spr;
+    Surfprop_a(spr) = 0.3f;
+    Surfprop_d(spr) = 0.6f;
+    Surfprop_s(spr) = 0.6f;
+    Surfprop_se(spr) = 30.0f;
+    Surfprop_t(spr) = 1.0f;
+    initialize_polygons( polygons, WHITE, &spr );
+    
+    Point point;
+    SoCoordinate3 *geomCoordinates;
+    SoIndexedFaceSet *faceSet;
+
+    // search for the coordinate set. Will only use the first one found.
+    SoSearchAction sa;
+    sa.setType(SoCoordinate3::getClassTypeId());
+    sa.setInterest(SoSearchAction::FIRST);
+    sa.apply(iv_geometry);
+    const SoPath *p = sa.getPath();
+    SoNode *n = (p != NULL) ? p->getTail() : NULL;
+    if (n != NULL) {
+	geomCoordinates = (SoCoordinate3 *) n;
+    }
+
+    //std::cout << "Node found: " << n->getTypeId().getName().getString() 
+    //<< std::endl;
+
+    // search for the indexed face set. Will only use the first one found.
+    sa.setType(SoIndexedFaceSet::getClassTypeId());
+    sa.apply(iv_geometry);
+    p = sa.getPath();
+    SoNode *n2 = (p != NULL) ? p->getTail() : NULL;
+    if (n2 != NULL) {
+	faceSet = (SoIndexedFaceSet *) n2;
+    }
+
+    /*
+      std::cout << "Set found: " << n2->getTypeId().getName().getString()
+      << std::endl;
+      
+      std::cout << "Done reading." << std::endl;
+      std::cout << "Before addition of polygons: " 
+      << geomCoordinates->point.getNum() << std::endl;
+    */
+
+    // add each point's coordinates.
+    polygons->n_points = geomCoordinates->point.getNum();
+    polygons->points = new Point[polygons->n_points];
+    for (int v = 0; v < geomCoordinates->point.getNum(); ++v) {
+
+	/*
+	  std::cout << geomCoordinates->point[v][0] << " "
+	  << geomCoordinates->point[v][1] << " "
+	  << geomCoordinates->point[v][2] << std::endl;
+	*/
+	fill_Point( polygons->points[v], geomCoordinates->point[v][0],
+		    geomCoordinates->point[v][1],
+		    geomCoordinates->point[v][2]);
+    }
+    
+    //std::cout << "After addition of polygons." << std::endl;
+    //std::cout << "N coordinates: " << faceSet->coordIndex.getNum() 
+    //      << " N items: " << polygons->n_items << std::endl;
+
+    
+    // count the number of polygons - there should be Coin
+    // function for this, but I dinna ken it.
+    int num_faces = 0;
+    for (int v=0; v< faceSet->coordIndex.getNum(); ++v) {
+	if (faceSet->coordIndex[v] == -1)
+	    num_faces++;
+    }
+
+    polygons->n_items = num_faces;
+    polygons->end_indices = new int[num_faces];
+
+    // add the end indices.
+    int counter = 0;
+    for (int v=0; v < faceSet->coordIndex.getNum(); ++v) {
+	if (faceSet->coordIndex[v] == -1) {
+	    //std::cout << "End: " << v-counter << std::endl;
+	    polygons->end_indices[counter] = v-counter;
+	    counter++;
+	}
+    }
+    
+    //std::cout << "TOTAL: " << polygons->end_indices[polygons->n_items-1] 
+    //<< std::endl;
+    
+    polygons->indices = new int[polygons->end_indices[polygons->n_items-1]];
+
+    // add all the other indices
+    counter = 0;
+    for (int v=0; v < faceSet->coordIndex.getNum(); ++v) {
+	if (faceSet->coordIndex[v] != -1) {
+	    polygons->indices[counter] = faceSet->coordIndex[v];
+	    //std::cout << "P: " << faceSet->coordIndex[v] << std::endl;
+	    counter++;
+	}
+    }
+							  
+
+    std::cout << "Number of faces: " << num_faces << std::endl;
+
+    polygons->normals = new Vector[polygons->n_points];
+    compute_polygon_normals( polygons );
+    return( object );
+}
+
 
 
 SoSeparator* bic_polygons_to_iv( const polygons_struct& p )

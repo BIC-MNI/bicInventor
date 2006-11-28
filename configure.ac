@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT
 AC_CONFIG_SRCDIR([tools/bicobj2iv.cc])
-AM_INIT_AUTOMAKE(bicInventor, 0.2)
+AM_INIT_AUTOMAKE(bicInventor, 0.3)
 AM_CONFIG_HEADER(config.h)
 
 AC_PROG_INSTALL
@@ -20,10 +20,15 @@ smr_WITH_BUILD_PATH
 
 # Check for required libraries
 
+
 mni_REQUIRE_BICPL
+
+AC_LANG_PUSH(C++)
+
 mni_REQUIRE_OOBICPL
 mni_REQUIRE_OPENINVENTOR
 
+AC_LANG_POP
 
 # Check for optional header files
 

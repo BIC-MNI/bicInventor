@@ -1,3 +1,10 @@
+2006-11-28  Jason Lerch  <jason@bic.mni.mcgill.ca>
+
+	* lib/bicInventor/object.*: added function to convert iv meshes to
+	bic polygons
+	* tools/iv2bicobj.cc: new tool to convert iv meshes to bic polygons.
+	* bumped version number to 0.3
+	
 2006-06-13  Jonathan Harlap <jharlap@bic.mni.mcgill.ca>
 
 	* lib/bicInventor.h: Add #include <bicpl.h>

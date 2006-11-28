@@ -4,6 +4,7 @@
 class SoSeparator;
 
 extern "C" {
+#   include <volume_io.h>
 #   include <bicpl.h>
 // Undo some of the volume_io braindamage.
 #   undef ON
@@ -25,5 +26,6 @@ SoSeparator* bic_polygons_to_iv( const polygons_struct& p );
 //! Convert BIC quadmesh structure to Inventor scene graph.
 SoSeparator* bic_quadmesh_to_iv( const quadmesh_struct& q );
 
-
+//! Convert Inventor scene graph to BIC polygons structure
+//object_struct* iv_to_bic_polygons( SoSeparator& iv_geometry );
 #endif

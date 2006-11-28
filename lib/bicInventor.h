@@ -16,6 +16,9 @@ class SoTextureCoordinate2;
 //! Convert entire BIC .obj file to scene graph.
 SoSeparator* bic_graphics_file_to_iv( const char* filename );
 
+//! Convert Inventor scene graph to BIC polygons structure
+object_struct* iv_to_bic_polygons( SoSeparator *iv_geometry );
+
 
 //! Generate image of BIC colour code.
 void bic_colourcode( SoSFImage& image,

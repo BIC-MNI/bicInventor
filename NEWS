@@ -1,3 +1,6 @@
+	New in release 0.3
+* Added tool to convert iv meshes to bic polygons.
+
 	New in release 0.2
 * Fixed for compatibility with bicpl 1.4.3
 	
