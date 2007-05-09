@@ -1,3 +1,7 @@
+
+	New in release 0.3.1
+* Added epm-header for binay builds
+
 	New in release 0.3
 * Added tool to convert iv meshes to bic polygons.
 

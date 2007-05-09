@@ -3,7 +3,7 @@ SUBDIRS = lib tools
 AUTOMAKE_OPTIONS = check-news
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = $(m4_files)
+EXTRA_DIST = $(m4_files) epm-header.in
 
 
 m4_files = \

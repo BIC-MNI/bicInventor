@@ -1,3 +1,7 @@
+2007-05-10  Andrew Janke <a.janke@gmail.com>
+
+	* Added epm-header.in
+
 2006-11-28  Jason Lerch  <jason@bic.mni.mcgill.ca>
 
 	* lib/bicInventor/object.*: added function to convert iv meshes to

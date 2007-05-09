@@ -1,0 +1,11 @@
+%product bicinventor
+%copyright 2000-2006 Steve Robbins
+%vendor McConnell Brain Imaging Centre
+%packager Andrew Janke <a.janke@gmail.com>
+%license COPYING
+%readme README
+%description bicInvetor wrapper library
+%version @VERSION@
+%requires minc
+%requires volume_io
+%requires bicpl

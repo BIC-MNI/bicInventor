@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT
 AC_CONFIG_SRCDIR([tools/bicobj2iv.cc])
-AM_INIT_AUTOMAKE(bicInventor, 0.3)
+AM_INIT_AUTOMAKE(bicInventor, 0.3.1)
 AM_CONFIG_HEADER(config.h)
 
 AC_PROG_INSTALL
