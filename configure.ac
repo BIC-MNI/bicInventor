@@ -38,4 +38,4 @@ AC_LANG_POP
 
 
 AC_CONFIG_FILES([Makefile lib/Makefile tools/Makefile])
-AC_OUTPUT
+AC_OUTPUT([epm-header])

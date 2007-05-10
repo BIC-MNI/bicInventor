@@ -7,5 +7,4 @@
 %description bicInvetor wrapper library
 %version @VERSION@
 %requires minc
-%requires volume_io
 %requires bicpl
