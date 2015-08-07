@@ -49,7 +49,7 @@ void bic_colourcode( SoSFImage& image,
     unsigned char* pixels = new unsigned char[3*height*width];
     int i = 0;
     for( int y = 0; y < height; ++y ) {
-	Colour col = get_colour_code( &ccd, double(y) / double(height-1) );
+	VIO_Colour col = get_colour_code( &ccd, double(y) / double(height-1) );
 	int r = get_Colour_r(col);
 	int g = get_Colour_g(col);
 	int b = get_Colour_b(col);
