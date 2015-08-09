@@ -42,7 +42,7 @@
 static SoBaseColor* 
 add_color_nodes( SoGroup* root, 
 		 Colour_flags bic_colour_flag,
-		 Colour bic_colour )
+		 VIO_Colour bic_colour )
 {
     SoMaterialBinding* mat_binding = new SoMaterialBinding;
     SoBaseColor* base_color = new SoBaseColor;
@@ -176,7 +176,7 @@ object_struct* iv_to_bic_polygons( SoSeparator *iv_geometry )
     
     // use default surface properties - should eventually translate them
     // from the inventor file.
-    Surfprop spr;
+    VIO_Surfprop spr;
     Surfprop_a(spr) = 0.3f;
     Surfprop_d(spr) = 0.6f;
     Surfprop_s(spr) = 0.6f;
@@ -184,7 +184,7 @@ object_struct* iv_to_bic_polygons( SoSeparator *iv_geometry )
     Surfprop_t(spr) = 1.0f;
     initialize_polygons( polygons, WHITE, &spr );
     
-    Point point;
+    VIO_Point point;
     SoCoordinate3 *geomCoordinates;
     SoIndexedFaceSet *faceSet;
 
@@ -222,7 +222,7 @@ object_struct* iv_to_bic_polygons( SoSeparator *iv_geometry )
 
     // add each point's coordinates.
     polygons->n_points = geomCoordinates->point.getNum();
-    polygons->points = new Point[polygons->n_points];
+    polygons->points = new VIO_Point[polygons->n_points];
     for (int v = 0; v < geomCoordinates->point.getNum(); ++v) {
 
 	/*
@@ -279,7 +279,7 @@ object_struct* iv_to_bic_polygons( SoSeparator *iv_geometry )
 
     std::cout << "Number of faces: " << num_faces << std::endl;
 
-    polygons->normals = new Vector[polygons->n_points];
+    polygons->normals = new VIO_Vector[polygons->n_points];
     compute_polygon_normals( polygons );
     return( object );
 }
@@ -375,7 +375,7 @@ SoSeparator* bic_quadmesh_to_iv( const quadmesh_struct& q )
 	    int j = (col == q.n ? 0 : col);
 	    // Compute index using IJ because there is no other way
 	    // to get the normal vector from a quadmesh.
-	    int index = IJ(i,j,q.n);
+	    int index = VIO_IJ(i,j,q.n);
 
 	    coord->point.set1Value( v, Point_x(q.points[index]), 
 				       Point_y(q.points[index]), 
@@ -426,13 +426,13 @@ SoSeparator* bic_graphics_file_to_iv( const char* filename )
 {
     SoSeparator* root = new SoSeparator;
 
-    File_formats format;
+    VIO_File_formats format;
     int num_objects;
     object_struct** object_list;
 
     // FIXME: fix bicpl for constness on these damn strings!!!
     if ( input_graphics_file( (char*)filename,
-			      &format, &num_objects, &object_list ) != OK ) 
+			      &format, &num_objects, &object_list ) != VIO_OK ) 
     {
 	return 0;
     }
