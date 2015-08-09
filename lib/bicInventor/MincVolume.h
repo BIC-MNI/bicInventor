@@ -2,7 +2,7 @@
 #define BICINVENTOR_MINCVOLUME_H
 
 #include <Inventor/nodes/SoTexture2.h>
-
+#include <minc.h>
 #include <mniVolume.h>
 
 class inventorMincVolume : public mniVolume {
